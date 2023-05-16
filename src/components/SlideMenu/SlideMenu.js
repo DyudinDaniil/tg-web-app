@@ -28,7 +28,7 @@ const SlideMenu = ({isActive}) => {
 
                     <li className={styles.item}>
                         <RiAccountCircleLine className={styles.icon} />
-                        <Link to={'/'}>
+                        <Link to={'/apps'}>
                             All Apps
                         </Link>
                     </li>

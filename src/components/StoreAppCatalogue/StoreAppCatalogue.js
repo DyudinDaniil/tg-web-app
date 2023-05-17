@@ -14,7 +14,7 @@ const StoreAppCatalogue = () => {
 
   const [apps, setApps] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:5050/app/all')
+    fetch('http://91.197.3.57:3000/app/all')
       .then(response => response.json())
       .then(json => setApps(json))
   }, [])
@@ -25,49 +25,53 @@ const StoreAppCatalogue = () => {
     setIsActive(current => !current);
   };
 
-  return (
+  if (apps.length !== 0) {
+    return (
       <div className={styles.container}>
-          <BurgerBtn click={handleClick} />
+        <BurgerBtn click={handleClick} />
 
-          <SlideMenu isActive={isActive} />
+        <SlideMenu isActive={isActive} />
 
-          <TopBar title='For You' />
+        <TopBar title='For You' />
 
-          <Scrollable class={styles.scroll}>
-              {
-                  apps.map(app => {
-                      return (
-                          <ForYouItem key={app._id} title={app.Name} text={app.Description} img={app.Icon} link={app.Link} />
-                      )
-                  })
-              }
-          </Scrollable>
+        <Scrollable class={styles.scroll}>
+          {
+            apps.map(app => {
+              return (
+                <ForYouItem key={app._id} title={app.Name} text={app.Description} img={app.Icon} link={app.Link} />
+              )
+            })
+          }
+        </Scrollable>
 
-          <TopBar title='Popular' />
+        <TopBar title='Popular' />
 
-          <Scrollable class={styles.scroll}>
-              {
-                  apps.map(app => {
-                      return (
-                          <PopularItem key={app._id} title={app.Name} text={app.Description} img={app.Icon} link={app.Link} />
-                      )
-                  })
-              }
-          </Scrollable>
+        <Scrollable class={styles.scroll}>
+          {
+            apps.map(app => {
+              return (
+                <PopularItem key={app._id} title={app.Name} text={app.Description} img={app.Icon} link={app.Link} />
+              )
+            })
+          }
+        </Scrollable>
 
-          <TopBar title='New' />
+        <TopBar title='New' />
 
-          <div className={styles.newList}>
-              {
-                  apps.map(app => {
-                      return (
-                          <NewItem key={app._id} title={app.Name} text={app.Description} img={app.Icon} link={app.Link} />
-                      )
-                  })
-              }
-          </div>
+        <div className={styles.newList}>
+          {
+            apps.map(app => {
+              return (
+                <NewItem key={app._id} title={app.Name} text={app.Description} img={app.Icon} link={app.Link} />
+              )
+            })
+          }
+        </div>
       </div>
-  )
+    )
+  }
+
+
 }
 
 export default StoreAppCatalogue;

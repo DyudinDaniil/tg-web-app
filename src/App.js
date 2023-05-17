@@ -11,7 +11,7 @@ function App() {
 
   const [apps, setApps] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:5050/app/all')
+    fetch('http://91.197.3.57:3000/app/all')
       .then(response => response.json())
       .then(json => setApps(json))
   }, [])

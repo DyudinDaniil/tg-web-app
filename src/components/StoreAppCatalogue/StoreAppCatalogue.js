@@ -25,7 +25,7 @@ const StoreAppCatalogue = () => {
     setIsActive(current => !current);
   };
 
-  if (apps.length !== 0) {
+  if (apps) {
     return (
       <div className={styles.container}>
         <BurgerBtn click={handleClick} />

@@ -14,24 +14,29 @@ function App() {
     fetch('http://91.197.3.57:3000/app/all')
       .then(response => response.json())
       .then(json => setApps(json))
+      .catch(error => console.log(error.message))
   }, [])
 
-  return (
-    <BrowserRouter>
-      <div className="App">
-        <Routes>
-          <Route path='/' element={<StoreAppCatalogue />} />
-          <Route path='user' element={<MyAccount />} />
+  if (apps) {
+    return (
+      <BrowserRouter>
+        <div className="App">
+          <Routes>
+            <Route path='/' element={<StoreAppCatalogue />} />
+            <Route path='user' element={<MyAccount />} />
 
-          {apps.map(app => {
-            return (
-              <Route path={app.Link} element={<AppPage key={app._id} title={app.Name} text={app.Description} img={app.Icon} />} />
-            )
-          })}
-        </Routes>
-      </div>
-    </BrowserRouter>
-  );
+            {apps.map(app => {
+              return (
+                <Route path={app.Link} element={<AppPage key={app._id} title={app.Name} text={app.Description} img={app.Icon} />} />
+              )
+            })}
+          </Routes>
+        </div>
+      </BrowserRouter>
+    );
+  }
+
+
 
 }
 
